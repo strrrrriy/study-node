@@ -1,0 +1,142 @@
+
+<style>
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+
+  .content {
+    display: flex;
+    margin: 82px auto 32px;
+    padding: 0 16px;
+    max-width: 960px;
+    flex-direction: column;
+    align-items: center;
+  }
+  a,
+  a:visited,
+  a:hover {
+    color: #1976d2;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #125699;
+  }
+
+
+
+</style>
+<div class="content" role="main">
+  <!--ngIfTest-->
+  <div class="container" *ngIf="userLoggedIn">
+    
+        .... visible only to authenticated users 
+    
+      <button *ngIf="user.id">Delete User</button>
+      
+    <ng-container *ngIf="userLoggedIn">
+      
+          .... visible only to authenticated users 
+      
+    </ng-container>
+  </div>
+  <!--njIfTest-->
+  <div class="container" *ngIf="10">
+    
+    .... this content will be visible because 10 is truthy ...
+    
+  </div>
+
+  <div class="container" *ngIf="0">
+    
+    .... this content will be hidden because 0 is falsy ...
+    
+  </div>
+
+  <div class="container" *ngIf="'hello world'">
+    
+    .... this content will be visible because the string 'hello world' is truthy ...
+    
+  </div>
+
+  <div class="container" *ngIf="''">
+    
+    .... this content will be hidden because the empty string '' is falsy ...
+    
+  </div>
+  <div class="container" *ngIf="{hello: 'world'}">
+    
+    .... this content will be visible because the expression is truthy ...
+    
+  </div>
+
+  <div class="container" *ngIf="{}">
+    
+    .... this content will also be visible because the empty object is also truthy ...
+    
+  </div>
+
+  <div class="container" *ngIf="[1, 2 ,3]">
+    
+    .... this content will be visible because the expression is truthy ...
+    
+  </div>
+
+  <div class="container" *ngIf="[]">
+    
+    .... this content will be visible because the empty array is also truthy ...
+    
+  </div>
+  <!--ngIf-elseTest-->
+  <div class="container" *ngIf="courses.length; else noCourses">
+    <h1>All Courses</h1>
+    ....
+  </div>  
+
+  <ng-template #noCourses>
+    <h1>No courses available.</h1>
+  </ng-template>
+  <ng-container *ngIf="courses.length ; then coursesList ; else noCourses">
+
+  </ng-container>
+  <ng-template #coursesList>
+    <h1>All courses available</h1>
+  </ng-template>
+  <ng-template #noCourses>
+    <h1>No courses available</h1>
+  </ng-template>
+  <!--<ng-container *ngIf="(courses$ | async) as courses">
+    <div class="courses">
+        {{courses.length}}
+    </div> 
+  </ng-container>-->
+
+
+  <!--Array-->
+  <button (click)="arrayTest()">arrayTest</button>
+  <!--<ng-template *ngFor="let site of sites">{{ site }}</ng-template>-->
+  <div *ngIf="sites">
+  </div>
+
+
+
+</div>

@@ -1,0 +1,17 @@
+<h2>menus</h2>
+
+<div *ngFor="let menu in menus">
+
+  <h3>
+    <a [title]="menu.name + ' details'">
+      {{ menu.name }}
+    </a>
+  </h3>
+    <p *ngIf="product.description">
+    Description: {{ menu.description }}
+  </p>
+
+  <button (click)="share()">
+    Share
+  </button>
+</div>
