@@ -1,0 +1,231 @@
+# 1. 泛型类和方法
+可设计具有以下特征的类和方法：在客户端代码声明并初始化这些类或方法之前，这些类或方法会延迟指定一个或多个类型。
+例如，通过使用泛型类型参数 T，可以编写其他客户端代码能够使用的单个类，而不会产生运行时转换或装箱操作的成本或风险
+
+```c#
+// Declare the generic class.
+public class GenericList<T>
+{
+    public void Add(T input) { }
+}
+class TestGenericList
+{
+    private class ExampleClass { }
+    static void Main()
+    {
+        // Declare a list of type int.
+        GenericList<int> list1 = new GenericList<int>();
+        list1.Add(1);
+
+        // Declare a list of type string.
+        GenericList<string> list2 = new GenericList<string>();
+        list2.Add("");
+
+        // Declare a list of type ExampleClass.
+        GenericList<ExampleClass> list3 = new GenericList<ExampleClass>();
+        list3.Add(new ExampleClass());
+    }
+}
+```
+## 1.1 创建自定义泛型类型和泛型方法
+创建自定义泛型类型和泛型方法，以提供自己的通用解决方案，设计类型安全的高效模式。 以下代码示例演示了出于演示目的的简单泛型链接列表类。 （大多数情况下，应使用 .NET 提供的 List<T> 类，而不是自行创建类。）
+
+* 在通常使用具体类型来指示列表中所存储项的类型的情况下，可使用类型参数 T。 其使用方法如下：
+
+1. 在 AddHead 方法中作为方法参数的类型。
+2. 在 Node 嵌套类中作为 Data 属性的返回类型。
+3. 在嵌套类中作为私有成员 data 的类型。
+
+T 可用于 Node 嵌套类。 如果使用具体类型实例化 GenericList<T>（例如，作为 GenericList<int>），则出现的所有 T 都将替换为 int。
+```c#
+// type parameter T in angle brackets
+public class GenericList<T>
+{
+    // The nested class is also generic on T.
+    private class Node
+    {
+        // T used in non-generic constructor.
+        public Node(T t)
+        {
+            next = null;
+            data = t;
+        }
+
+        private Node? next;
+        public Node? Next
+        {
+            get { return next; }
+            set { next = value; }
+        }
+
+        // T as private member data type.
+        private T data;
+
+        // T as return type of property.
+        public T Data
+        {
+            get { return data; }
+            set { data = value; }
+        }
+    }
+
+    private Node? head;
+
+    // constructor
+    public GenericList()
+    {
+        head = null;
+    }
+
+    // T as method parameter type:
+    public void AddHead(T t)
+    {
+        Node n = new Node(t);
+        n.Next = head;
+        head = n;
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        Node? current = head;
+
+        while (current != null)
+        {
+            yield return current.Data;
+            current = current.Next;
+        }
+    }
+}
+
+
+class TestGenericList
+{
+    static void Main()
+    {
+        // int is the type argument
+        GenericList<int> list = new GenericList<int>();
+
+        for (int x = 0; x < 10; x++)
+        {
+            list.AddHead(x);
+        }
+
+        foreach (int i in list)
+        {
+            System.Console.Write(i + " ");
+        }
+        System.Console.WriteLine("\nDone");
+    }
+}
+```
+
+# 2. 匿名类型
+
+1. 匿名类型提供了一种方便的方法，可用来将一组只读属性封装到单个对象中，而无需首先显式定义一个类型。 类型名由编译器生成，并且不能在源代码级使用。 每个属性的类型由编译器推断。
+
+```c#
+var v = new { Amount = 108, Message = "Hello" };
+
+// Rest the mouse pointer over v.Amount and v.Message in the following
+// statement to verify that their inferred types are int and string.
+Console.WriteLine(v.Amount + v.Message);
+```
+
+2. 匿名类型包含一个或多个公共只读属性。 包含其他种类的类成员（如方法或事件）为无效。 用来初始化属性的表达式不能为 null、匿名函数或指针类型。
+
+```c#
+//最常见的方案是用其他类型的属性初始化匿名类型。 在下面的示例中，假定名为 Product 的类存在。 类 Product 包括 Color 和 Price 属性，以及你不感兴趣的其他属性。 变量 Productproducts 是 对象的集合。 匿名类型声明以 new 关键字开始。 声明初始化了一个只使用 Product 的两个属性的新类型。 使用匿名类型会导致在查询中返回的数据量变少。
+var productQuery =
+    from prod in products
+    select new { prod.Color, prod.Price };
+
+foreach (var v in productQuery)
+{
+    Console.WriteLine("Color={0}, Price={1}", v.Color, v.Price);
+}
+```
+3. 如果未在匿名类型中指定成员名称，编译器会为匿名类型成员提供与用于初始化它们的属性相同的名称。 为使用表达式初始化的属性提供名称，如上一示例中所示。 在下面示例中，匿名类型的属性名称都为 PriceColor 和 。
+
+
+4. 当使用匿名类型来初始化变量时，可以通过使用 var 将变量作为隐式键入的本地变量来进行声明。 类型名称无法在变量声明中给出，因为只有编译器能访问匿名类型的基础名称。
+
+```c#
+//匿名类型是 class 类型，它们直接派生自 object，并且无法强制转换为除 object 外的任何类型。 虽然你的应用程序不能访问它，编译器还是提供了每一个匿名类型的名称。 从公共语言运行时的角度来看，匿名类型与任何其他引用类型没有什么不同。
+var anonArray = new[] { new { name = "apple", diam = 4 }, new { name = "grape", diam = 1 }};
+```
+5. 匿名类型支持采用 with 表达式形式的非破坏性修改。 这使你能够创建匿名类型的新实例，其中一个或多个属性具有新值
+
+```c#
+var apple = new { Item = "apples", Price = 1.35 };
+var onSale = apple with { Price = 0.79 };
+Console.WriteLine(apple);
+Console.WriteLine(onSale);
+```
+
+无法将字段、属性、时间或方法的返回类型声明为具有匿名类型。 同样，你不能将方法、属性、构造函数或索引器的形参声明为具有匿名类型。 要将匿名类型或包含匿名类型的集合作为参数传递给某一方法，可将参数作为类型 object 进行声明。 但是，对匿名类型使用 object 违背了强类型的目的。 如果必须存储查询结果或者必须将查询结果传递到方法边界外部，请考虑使用普通的命名结构或类而不是匿名类型。
+
+6. 由于匿名类型上的 Equals 和 GetHashCode 方法是根据方法属性的 Equals 和 GetHashCode 定义的，因此仅当同一匿名类型的两个实例的所有属性都相等时，这两个实例才相等。
+
+# 3. C# 中的类、结构和记录概述
+
+## 3.1 封装
+
+## 3.2 成员
+
+* C# 没有全局变量或方法，这一点其他某些语言不同。 即使是编程的入口点（Main 方法），也必须在类或结构中声明（使用顶级语句时，隐式声明）。
+
+下面列出了所有可以在类、结构或记录中声明的各种成员。
+> 字段
+常量
+属性
+方法
+构造函数
+事件
+终结器
+索引器
+运算符
+嵌套类型
+## 3.3 可访问性-默认值为 private
+一些方法和属性可供类或结构外部的代码（称为“客户端代码”）调用或访问。 另一些方法和属性只能在类或结构本身中使用。
+* public
+* protected
+* internal
+* protected internal
+* private
+* private protected。
+## 3.4 继承
+派生自另一个类（称为基类）的类自动包含基类的所有公共、受保护和内部成员（其构造函数和终结器除外）。
+
+可以将类声明为 abstract，即一个或多个方法没有实现代码。 尽管抽象类无法直接实例化，但可以作为提供缺少实现代码的其他类的基类。 类还可以声明为 sealed，以阻止其他类继承。
+
+## 3.5 界面*
+类、结构和记录可以实现多个接口。 从接口实现意味着类型实现接口中定义的所有方法。
+
+## 3.6 泛型类型
+类、结构和记录可以使用一个或多个类型参数进行定义。 客户端代码在创建类型实例时提供类型
+
+## 3.7 静态类型
+类（而非结构或记录）可以声明为static。 静态类只能包含静态成员，不能使用 new 关键字进行实例化。在程序加载时，类的一个副本会加载到内存中，而其成员则可通过类名进行访问。 类、结构和记录可以包含静态成员。 
+
+## 3.8 嵌套类型
+类、结构和记录可以嵌套在其他类、结构和记录中。 有关详细信息，请参阅嵌套类型。
+
+## 3.9 分部类型*
+可以在一个代码文件中定义类、结构或方法的一部分，并在其他代码文件中定义另一部分。 
+
+## 3.10 对象初始值设定项*
+可以通过将值分配给属性来实例化和初始化类或结构对象以及对象集合。
+
+## 3.11 匿名类型
+在不方便或不需要创建命名类的情况下，可以使用匿名类型。 匿名类型由其命名数据成员定义。
+
+## 3.12 扩展方法*
+可以通过创建单独的类型来“扩展”类，而无需创建派生类。 该类型包含可以调用的方法，就像它们属于原始类型一样。 
+
+## 3.13 隐式类型的局部变量*
+在类或结构方法中，可以使用隐式类型指示编译器在编译时确定变量类型。
+
+## 3.14 记录
+C# 9 引入了 record 类型，可创建此引用类型而不创建类或结构。 记录是带有内置行为的类，用于将数据封装在不可变类型中。
+
+# 4. 对象 - 创建类型的实例

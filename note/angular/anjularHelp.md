@@ -1,0 +1,1 @@
+创建一个组件快捷方式：`create a component：ng generate component <component name>`
