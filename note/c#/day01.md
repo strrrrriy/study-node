@@ -1,5 +1,13 @@
 # 1. 类型系统
 * C 和 C++ 开发人员请注意，在 C# 中，bool 不能转换为 int。
+
+在 C# 中，变量分为以下几种类型：
+
+> 值类型（Value types）
+
+> 引用类型（Reference types）
+
+> 指针类型（Pointer types）
 ## 1.1 在变量声明中指定类型
 当在程序中声明变量或常量时，必须指定其类型或使用 var 关键字让编译器推断类型。
 ```c#
@@ -40,7 +48,7 @@ var query = from item in source
 
 * 值类型分为两类：struct和enum。
 内置的数值类型是结构，它们具有可访问的字段和方法：
-```
+```c#
 // constant field on type byte.
 byte b = byte.MaxValue;
 //但可将这些类型视为简单的非聚合类型，为其声明并赋值：
@@ -54,7 +62,6 @@ char c = 'Z';
 public struct Coords
 {
     public int x, y;
-
     public Coords(int p1, int p2)
     {
         x = p1;
