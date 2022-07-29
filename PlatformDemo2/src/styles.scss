@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+$path-to-assets: './assets';
+
+// @import "~@bci/ng-material-theme/sass/theme";
+// @import "~@bci/generic-web-styles/sass/bci-styles";
+
+// @import "~ng-pick-datetime/assets/style/picker.min.css";
+
+.snack-error simple-snack-bar{
+    color: red;
+
+}
+
+.snack-warning simple-snack-bar{
+    color:yellow;
+
+}
+
+.snack-success simple-snack-bar{
+    color: #4F8A10;
+
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

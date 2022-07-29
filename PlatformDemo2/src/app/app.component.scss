@@ -1,0 +1,34 @@
+:host {
+    text-align: center;
+  }
+
+  nz-header,
+  nz-footer {
+    background: #ffffff;
+    color: #fff;
+  }
+
+  nz-content {
+    background: rgba(16, 142, 233, 1);
+    color: #fff;
+    // min-height: 120px;
+    // line-height: 120px;
+    // height: 100%;
+  }  
+  .angled-gradient {
+    height: 2%;
+    background: linear-gradient(70deg, rgb(182, 45, 45),rgb(77, 76, 146),rgb(91, 170, 235), rgb(81, 214, 77));
+  }
+
+  container {
+    width: 100%;
+    height: 100%;
+  }
+  .logo {
+    width: 150px;
+    height: 35px;
+    background-image: url(../assets/img/bosch-logo-only.png);
+    background-size: contain;
+    margin: 16px 24px 16px 0;
+    float: right;
+  }

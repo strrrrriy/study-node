@@ -1,0 +1,79 @@
+:host {
+  flex: 1;
+}
+
+.bg-img-container {
+  height: 100%;
+  overflow: hidden;
+  background: url("../../assets/img/supergraphic_dark_blue.svg"), #0080bc;
+  background-size: cover;
+  color: white;
+  // font: sans-serif;
+  
+  .angled-gradient {
+    height: 20px;
+    background: linear-gradient(70deg, rgb(182, 45, 45),rgb(77, 76, 146),rgb(91, 170, 235), rgb(81, 214, 77));
+  }
+
+  .container {
+    width: 30%;
+    height: 100%;
+    min-width: 500px;
+    margin: 3em auto;
+
+
+
+
+    .form {
+      padding: 55px;
+      height: 350px;
+      background: #fff;
+      color: #0080bc;
+
+      h2 {
+        margin-top: 0;
+        font-size: 40px;
+        font-family: Georgia, "Times New Roman", serif, fantasy, cursive,
+          "Trebuchet MS", Verdana, sans-serif;
+        color: #0080bc;
+        text-align: left;
+      }
+      input {
+        margin-top: 10px;
+        text-align: left;
+      }
+      .ant-btn-primary:hover,
+      .ant-btn-primary:focus {
+        color: #fff;
+        border-color: #005691 50%;
+        background: #008ecf 50%;
+      }
+      .ant-btn-primary {
+        color: rgb(255, 255, 255);
+        border-color: #1890ff;
+        border: 10px;
+        background: #005691 50%;
+      }
+      .ant-btn-default {
+        border: 10px;
+
+      }
+      .ant-btn-default:hover, .ant-btn-default:focus {
+        color: #050505;
+        border-color: #40a9ff;
+        // background: #fff;
+    }
+      [nz-button] {
+        margin-bottom: 12px;
+        float: right;
+        
+      }
+      .ant-btn-lg {
+        height: 50px;
+        padding: 10px 20px;
+        font-size: 15px;
+        border-radius: 2px;
+    }
+    }
+  }
+}

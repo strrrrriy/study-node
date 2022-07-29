@@ -1,0 +1,25 @@
+<div style="height: 100vh">
+  <nz-layout style="height: 100%">
+    <!-- <nz-sider
+      style="
+        height: 100%;
+        flex: 0 0 283px;
+        width: 283px;
+        max-width: 283px;
+        min-width: 100px;
+      "
+    >     -->
+    <nz-sider>
+
+      <app-sider></app-sider>
+    </nz-sider>
+    <nz-layout style="height: 100%">
+      <app-header></app-header>
+      <nz-content>
+        <router-outlet></router-outlet>
+      </nz-content>
+      <!-- <nz-content>Content</nz-content> -->
+      <!-- <nz-footer>Footer</nz-footer> -->
+    </nz-layout>
+  </nz-layout>
+</div>

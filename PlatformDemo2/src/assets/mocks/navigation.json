@@ -1,0 +1,112 @@
+[
+  {
+    "title": "Home",
+    "url": "/",
+    "position": 0,
+    "icon": "Bosch-Ic-home-outline",
+    "routerLinkActiveOptions": {
+      "exact": true
+    }
+  },
+  {
+    "title": "MES Service & API",
+    "url": "/",
+    "unlinked":true,
+    "position": 2,
+    "icon": "Bosch-Ic-components",
+    "routerLinkActiveOptions": {
+      "exact": true
+    },
+    "items":[
+      {
+        "title": "MES API",
+        "url": "mes-api",
+        "position": 0,
+        "icon": "Bosch-Ic-components",
+        "routerLinkActiveOptions": {
+          "exact": true
+        }
+      },
+      {
+        "title": "MES Service",
+        "url": "mes-service",
+        "position": 0,
+        "icon": "Bosch-Ic-components",
+        "routerLinkActiveOptions": {
+          "exact": true
+        }
+      }
+      
+    ]
+  },
+  {
+    "title": "MES Line Config",
+    "url": "/",
+    "position": 3,
+    "unlinked":true,
+    "icon": "Bosch-Ic-components",
+    "routerLinkActiveOptions": {
+      "exact": true
+    },
+    "items": [
+      {
+        "title": "Plant",
+        "url": "mes-plant",
+        "position": 0,
+        "icon": "Bosch-Ic-components",
+        "routerLinkActiveOptions": {
+          "exact": true
+        }
+      },
+      {
+        "title": "Line",
+        "url": "mes-line",
+        "position": 0,
+        "icon": "Bosch-Ic-components",
+        "routerLinkActiveOptions": {
+          "exact": true
+        }
+      },
+      {
+        "title": "Route",
+        "url": "mes-route",
+        "position": 0,
+        "icon": "Bosch-Ic-components",
+        "routerLinkActiveOptions": {
+          "exact": true
+        }
+      }
+    ]
+  },
+  {
+    "title": "Adminstration",
+    "url": "/",
+    "position": 3,
+    "unlinked":true,
+    "icon": "Bosch-Ic-components",
+    "routerLinkActiveOptions": {
+      "exact": true
+    },
+    "items": [
+      {
+        "title": "User Management",
+        "url": "user-management",
+        "position": 0,
+        "icon": "Bosch-Ic-components",
+        "routerLinkActiveOptions": {
+          "exact": true
+        }
+      },
+      {
+        "title": "Role Management",
+        "url": "role-management",
+        "position": 0,
+        "icon": "Bosch-Ic-components",
+        "routerLinkActiveOptions": {
+          "exact": true
+        }
+      }
+     
+    ]
+  }
+]

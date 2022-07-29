@@ -1,0 +1,64 @@
+.ant-layout-sider {
+  position: relative;
+  min-width: 0;
+  background: #525f6b;
+  transition: all 0.2s;
+}
+element.style {
+  height: 100%;
+  flex: 0 0 200px;
+  max-width: 250px;
+  min-width: 200px;
+  width: 250px;
+}
+.ant-menu-vertical .ant-menu-item,
+.ant-menu-vertical-left .ant-menu-item,
+.ant-menu-vertical-right .ant-menu-item,
+.ant-menu-inline .ant-menu-item,
+.ant-menu-vertical .ant-menu-submenu-title,
+.ant-menu-vertical-left .ant-menu-submenu-title,
+.ant-menu-vertical-right .ant-menu-submenu-title,
+.ant-menu-inline .ant-menu-submenu-title {
+  height: 40px;
+  /* margin-top: 4px; */
+  margin-bottom: 0px;
+  padding: 0 16px;
+  overflow: hidden;
+  line-height: 40px;
+  text-overflow: ellipsis;
+}
+
+.title {
+  height: 64px;
+  font-size: large;
+//   display: inline-block;
+  display: block;
+  float: left;
+
+
+  color: rgb(181, 192, 177);
+
+  h1 {
+    display: block;
+    margin: 0 0 0 16px;
+    line-height: 64px;
+    white-space: nowrap;
+    width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #bfc0c2;
+    font-family: Bosch-Sans;
+    // font-weight: 300;
+    font-size: 20px;
+  }
+  button {
+    display: block;
+    float: left;
+
+    height: 1px;
+    width: 24px;
+    background-color: rgba(255, 255, 255, 0);
+    margin-bottom: 6px;
+    transition: 0.4s;
+  }
+}

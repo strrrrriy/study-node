@@ -1,0 +1,5 @@
+{
+  "environment": "prod",
+  "endpointNavigation": "api/System/getmenus",
+  "endpointUserNavigation": "api/System/getusermenus"
+}

@@ -1,0 +1,79 @@
+
+  <div class="wrapper">
+    <div class="title">
+      <div>BCI API Platform</div>
+      <button nz-button (click)="toggleCollapsed()">
+          <i nz-icon [nzType]="isCollapsed ? 'menu' : 'close'"></i>
+          <!-- <i nz-icon nzType="close" nzTheme="outline"></i> -->
+        </button>
+  </div>
+    <ul nz-menu nzMode="inline" nzTheme="dark" [nzInlineCollapsed]="isCollapsed">
+      <li
+      nz-menu-item
+      nzSelected
+    >
+      <!-- <i nz-icon nzType="mail"></i> -->
+      <i nz-icon nzType="home" nzTheme="outline"></i>
+      <span>主页</span>
+    </li>
+      <!-- <li nz-submenu nzTitle="API 日志" nzIcon="appstore"></li> -->
+    <li nz-menu-item>
+      <i nz-icon nzType="appstore" nzTheme="outline"></i>
+      <span>API 日志</span>
+    </li>
+      <li nz-submenu nzTitle="服务 & API" nzIcon="carry-out">
+        <ul>
+          <li nz-menu-item>MES API</li>
+          <li nz-menu-item>MES 服务</li>
+          <li nz-menu-item>Generic API</li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="API 文档" nzIcon="profile">
+        <ul>
+          <li nz-menu-item>MES API 文档</li>
+          <li nz-menu-item>Generic API 文档</li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="MES 流水线配置" nzIcon="setting">
+        <ul>
+          <li nz-menu-item>设备</li>
+          <li nz-menu-item>流水线</li>
+          <li nz-menu-item>路由</li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="MES 接口配置" nzIcon="pie-chart">
+        <ul>
+          <li nz-menu-item>数据库</li>
+          <li nz-menu-item>接口</li>
+          <li nz-menu-item>管道接口</li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="管理" nzIcon="setting">
+        <ul>
+          <li nz-menu-item>密匙管理</li>
+          <li nz-menu-item>用户管理</li>
+          <li nz-menu-item>权限管理</li>
+          <li nz-menu-item>通道控制</li>
+          <li nz-menu-item>系统参数</li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="指南" nzIcon="compass">
+        <ul>
+          <li nz-menu-item>API 指南</li>
+        </ul>
+      </li>
+      <li nz-menu-item>
+        <i nz-icon nzType="heart" nzTheme="outline"></i>
+        <span>服务</span>
+      </li>
+      <!-- <li nz-submenu nzTitle="Admin" nzIcon="setting"></li> -->
+      <li class="user">
+        <i nz-icon nzType="user" nzTheme="outline"></i>
+        <span>Admin</span>
+      </li>
+      <li class="imprint">
+        <i nz-icon nzType="pound-circle" nzTheme="outline"></i>
+        <span>Imprint</span>
+      </li>
+    </ul>
+  </div>
