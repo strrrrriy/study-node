@@ -44,3 +44,20 @@ TranslateModule.forRoot({}),
       }
     }),
 ```
+
+# 5. Angular报错问题：Can't bind to 'formGroup' since it isn't a known property of 'form'
+报错提示：
+```
+Uncaught Error: Template parse errors:
+Can't bind to 'formGroup' since it isn't a known property of 'form'. ("</p>
+<form [ERROR ->][formGroup]="loginForm">
+  <label>
+"): ng:///AppModule/LoginComponent.html@7:6
+```
+问题原因：
+没有导入表单模块 FormsModule。
+
+解决办法:
+从 @angular/forms 中导入 ReactiveFormsModule 模块。
+
+`import { FormsModule, ReactiveFormsModule } from '@angular/forms'`;
