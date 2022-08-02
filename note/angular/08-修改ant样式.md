@@ -24,7 +24,7 @@ css代码
 }
 ```
 接下来我们来检测下成果。
-[](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6a5b89f6b1bf4a819027d11c9864fe77~tplv-k3u1fbpfcp-zoom-in-crop-mark%3A3024%3A0%3A0%3A0.awebp)
+![picture](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6a5b89f6b1bf4a819027d11c9864fe77~tplv-k3u1fbpfcp-zoom-in-crop-mark%3A3024%3A0%3A0%3A0.awebp)
 
 输入框的背景颜色并没有如我们预期地发生改变。接下来我们分析下具体原因，从上面的截图中可以看到，antd组件内部的css类名并没有被css module处理，但是我们的自定义样式是通过css module来实现的，导致dom没有办法匹配到正确的样式。我们来查看下webpack的配置：
 
@@ -132,7 +132,7 @@ import './index.antd.css';
 }
 ```
 接下来我们看下效果：
-[](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/42be9f97b1ca40bca9e3db19fd3b6997~tplv-k3u1fbpfcp-zoom-in-crop-mark%3A3024%3A0%3A0%3A0.awebp)
+![picture](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/42be9f97b1ca40bca9e3db19fd3b6997~tplv-k3u1fbpfcp-zoom-in-crop-mark%3A3024%3A0%3A0%3A0.awebp)
 从这里我们可以看到，外围的feeInput类已经成功地通过类选择器修改了antd自带的.ant-input样式。
 3. 终极解决方案
 问题解决了，但是实操过程过于繁琐，要多出来一个文件，还要新增webpack打包规则，不符合less is more的规则，那么有没有更好的方案呢?这里有一点可以注意下，css module针对全局的样式（使用:global包裹的），不会将类名进行hash化，换句话来说，我们可以利用这一点，将antd组件外部用来精细化控制样式的类定义在:global中，这样就避免了类名hash化，可以配合antd的类名规则，实现样式控制。具体代码如下：
@@ -178,6 +178,6 @@ import s from './index.css';
 接下来我们看看效果：
 
 
-[](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cfe3bb013c6641e6a9d5122d2bd8bfa0~tplv-k3u1fbpfcp-zoom-in-crop-mark%3A3024%3A0%3A0%3A0.awebp)
+![picture](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cfe3bb013c6641e6a9d5122d2bd8bfa0~tplv-k3u1fbpfcp-zoom-in-crop-mark%3A3024%3A0%3A0%3A0.awebp)
 
 效果如预期，完成了对antd组件内嵌样式的完美修改！没有第二种方案中引入多余文件的问题，简洁高效。
